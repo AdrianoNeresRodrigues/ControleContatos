@@ -9,6 +9,7 @@ builder.Services.AddDbContext<BancoContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("StringDeConexao"))
             );
 
+builder.Services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");

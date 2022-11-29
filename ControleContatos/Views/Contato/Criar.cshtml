@@ -1,13 +1,16 @@
-﻿@{
+﻿@model ContatoModel
+
+@{
     ViewData["Title"] = "Criar de Contatos";
 }
+
 
 <div class="text-center">
     <h1 class="display-4">Cadastrar Contato</h1>
 
 </div>
 
-<form>
+<form asp-controller="Contato" asp-action="Criar" method="post">
     <div class="mb-3">
         <label for="nome">Nome</label>
         <input type="text" class="form-control" placeholder="Digite seu nome">
