@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<ContatoModel>
+
+@{
     ViewData["Title"] = "Editar Contatos";
 }
 
@@ -7,7 +9,7 @@
 
 </div>
 
-<form>
+<form asp-controller="Contato" asp-action="Alterar" method="post">
     <div class="mb-3">
         <label for="nome">Nome</label>
         <input type="text" class="form-control" placeholder="Digite seu nome">
