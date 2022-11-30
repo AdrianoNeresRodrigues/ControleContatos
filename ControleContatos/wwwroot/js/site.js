@@ -8,8 +8,17 @@ $('.close-alert').click(function () {
     $('.alert').hide('hide');
 });
 
+
+
 $(document).ready(function () {
-    $('#table-contatos').DataTable({
+    getDataTable('#table-Contatos');
+    getDataTable('#table-Usuarios');
+
+
+})
+
+function getDataTable(id) {
+    $(id).DataTable({
         "ordering": true,
         "paging": true,
         "searching": true,
@@ -37,6 +46,9 @@ $(document).ready(function () {
             }
         }
     });
+}
 
 
+$('.close-alert').click(function () {
+    $('.alert').hide('hide');
 });
