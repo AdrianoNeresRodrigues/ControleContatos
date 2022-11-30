@@ -26,11 +26,11 @@ namespace ControleContatos.Repositorio
         }
         public ContatoModel ListarPorId(int id)
         {
-            return _bancoContext.Contatos.FirstOrDefault(x => x.ID == id);
+            return _bancoContext.Contatos.FirstOrDefault(x => x.Id == id);
         }
         public ContatoModel Atualizar(ContatoModel contato)
         {
-            ContatoModel contatoDb = ListarPorId(contato.ID);
+            ContatoModel contatoDb = ListarPorId(contato.Id);
             if (contatoDb == null) throw new System.Exception("Houve um erro de atualização");
 
             contatoDb.Nome = contato.Nome;
@@ -42,6 +42,16 @@ namespace ControleContatos.Repositorio
             return contatoDb;
 
         }
+
+        public bool Apagar(int id)
+        {
+            ContatoModel contatoDb = ListarPorId(id);
+            if (contatoDb == null) throw new System.Exception("Houve um erro de Exclusão");
+            _bancoContext.Contatos.Remove(contatoDb);
+            _bancoContext.SaveChanges();
+            return true;
+        }
+
 
     }
 }

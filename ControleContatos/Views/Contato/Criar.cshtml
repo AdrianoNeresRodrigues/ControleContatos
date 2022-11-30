@@ -14,7 +14,7 @@
     <div class="mb-3">
         <label for="nome">Nome</label>
         <input type="text" asp-for="Nome" class="form-control" placeholder="Digite seu nome">
-
+        @Html.ValidationMessageFor(x =>x.Nome)
     </div>
 
     <div class="mb-3">

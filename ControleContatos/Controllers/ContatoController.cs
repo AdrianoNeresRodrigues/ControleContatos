@@ -30,17 +30,25 @@ namespace ControleContatos.Controllers
             return View(contato);
 
         }
-        public IActionResult Apagar()
+        public IActionResult Apagar(int id)
         {
-            return View();
+
+            _contatoRepositorio.Apagar(id);
+            return RedirectToAction("Index");
+
         }
+
 
         [HttpPost]
         public IActionResult Criar(ContatoModel contato)
         {
-            //Injetar o contatoRepositorio
-            _contatoRepositorio.Adicionar(contato);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _contatoRepositorio.Adicionar(contato);
+                return RedirectToAction("Index");
+            }
+            return View(contato);
+
 
         }
 
@@ -53,6 +61,11 @@ namespace ControleContatos.Controllers
 
         }
 
+        public IActionResult ApagarConfirmacao(int id)
+        {
+            ContatoModel contato = _contatoRepositorio.ListarPorId(id);
+            return View(contato);
+        }
 
     }
 }
