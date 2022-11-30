@@ -32,11 +32,27 @@ namespace ControleContatos.Controllers
         }
         public IActionResult Apagar(int id)
         {
+            try
+            {
+                bool apagado = _contatoRepositorio.Apagar(id);
 
-            _contatoRepositorio.Apagar(id);
-            return RedirectToAction("Index");
-
+                if (apagado)
+                {
+                    TempData["MensagemSucesso"] = "Contato apagado com sucesso!";
+                }
+                else
+                {
+                    TempData["MensagemErro"] = "Ops, não conseguimos apagar seu contato, tente novamante!";
+                }
+                return RedirectToAction("Index");
+            }
+            catch (Exception erro)
+            {
+                TempData["MensagemErro"] = $"Ops, não conseguimos apagar seu contato, tente novamante, detalhe do erro: {erro.Message}";
+                return RedirectToAction("Index");
+            }
         }
+
 
 
         [HttpPost]
@@ -44,7 +60,7 @@ namespace ControleContatos.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
+               // if (ModelState.IsValid)
                 {
                     _contatoRepositorio.Adicionar(contato);
                     TempData["MensagemSucesso"] = "Contato Cadastrado com Sucesso";
