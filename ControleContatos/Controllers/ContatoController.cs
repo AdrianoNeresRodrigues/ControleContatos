@@ -60,7 +60,7 @@ namespace ControleContatos.Controllers
         {
             try
             {
-               // if (ModelState.IsValid)
+                if (ModelState.IsValid)
                 {
                     _contatoRepositorio.Adicionar(contato);
                     TempData["MensagemSucesso"] = "Contato Cadastrado com Sucesso";

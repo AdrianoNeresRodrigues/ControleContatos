@@ -6,9 +6,10 @@
 
 <div class="text-center">
 
+    <h1 class="display-4">Listagem de contatos</h1>
     @if (TempData["MensagemSucesso"] != null)
     {
-        <h1 class="display-4">Listagem de contatos</h1>
+        
         <div class="alert alert-success" role="alert">
             <button type="button" class="btn btn-success btn-sm close-alert" aria-label="Close">X</button>
             @TempData["MensagemSucesso"]
@@ -34,22 +35,6 @@
     </div>
 
     <br />
-
-
-    <h1 class="display-4">Listagem de contatos</h1> <!-- Título da página -->
-
-<div class="alert alert-success" role="alert">
-        <button type="button" class="btn btn-success btn-sm close-alert" aria-label="Close">X</button>
-        A simple success alert—check it out!
-    </div>
-
-    <div class="alert alert-danger" role="alert">
-
-        <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
-        A simple danger alert—check it out!
-    </div>
-
-
 
     <table id="table-contatos" class="table" style="width:100%">
         <thead>
