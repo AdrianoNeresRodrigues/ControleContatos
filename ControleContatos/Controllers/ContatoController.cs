@@ -42,12 +42,23 @@ namespace ControleContatos.Controllers
         [HttpPost]
         public IActionResult Criar(ContatoModel contato)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _contatoRepositorio.Adicionar(contato);
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    _contatoRepositorio.Adicionar(contato);
+                    TempData["MensagemSucesso"] = "Contato Cadastrado com Sucesso";
+                    return RedirectToAction("Index");
+                }
+
+                return View(contato);
             }
-            return View(contato);
+            catch (System.Exception erro)
+            {
+                TempData["MensagemErro"] = $"ops, algo deu errado erro: {erro.Message}";
+                return RedirectToAction("Index");
+
+            }
 
 
         }
@@ -65,6 +76,29 @@ namespace ControleContatos.Controllers
         {
             ContatoModel contato = _contatoRepositorio.ListarPorId(id);
             return View(contato);
+        }
+
+        [HttpPost]
+        public IActionResult Alterar(ContatoModel contato)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _contatoRepositorio.Atualizar(contato);
+                    TempData["MensagemSucesso"] = "Contato alterado com sucesso!";
+                    return RedirectToAction("Index");
+
+                }
+                return View("Editar", contato);
+            }
+            catch (System.Exception erro)
+            {
+
+                TempData["MensagemErro"] = $"Ops, não conseguimos Alterar seu contato, tente novamante, detalhe do erro: {erro.Message}";
+                return RedirectToAction("Index");
+            }
+
         }
 
     }
